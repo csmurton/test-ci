@@ -9,7 +9,8 @@ Resources:
       Runtime: nodejs6.10
       CodeUri: ./code
       Events:
-        Type: Api
-        Properties:
-          Path: /hello
-          Method: get
+        MyHelloApi:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: get
