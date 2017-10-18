@@ -1,4 +1,4 @@
-version: 0.1
+version: 0.2
 phases:
   pre_build:
     commands:
@@ -10,6 +10,5 @@ phases:
       - make package
 
 artifacts:
-  type: zip
   files:
     - deploy/template.yaml
