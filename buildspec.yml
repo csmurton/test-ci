@@ -1,10 +1,14 @@
 version: 0.1
 phases:
-  install:
+  pre_build:
     commands:
-      - mkdir deploy
-      - aws cloudformation package --template-file template.yaml --s3-bucket test-ci-scratch
-                                   --output-template-file deploy/template.yaml
+      - echo Installing dependencies and running unit tests
+      - make test
+  build:
+    commands:
+      - echo Building CloudFormation template package
+      - make package
+
 artifacts:
   type: zip
   files:
