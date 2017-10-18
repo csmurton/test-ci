@@ -1,14 +1,13 @@
 all:
 	test
-	package
+	build
 
 test:
-	cd code
-	npm install && npm test
-	cd ..
+	cd code && \
+	npm install && \
+	npm test
 
-package:
-	cd code
-	mkdir -p deploy
+build:
+	cd code && \
+	mkdir -p deploy && \
 	aws cloudformation package --template-file template.yaml --s3-bucket test-ci-scratch --output-template-file deploy/template.yaml
-	cd ..
