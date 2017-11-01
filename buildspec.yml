@@ -10,5 +10,4 @@ phases:
       - serverless deploy --stage ${TARGET_STAGE}
   post_build:
     commands:
-      - export HELLO_ENDPOINT=$(serverless info --stage ${TARGET_STAGE} -v | grep ServiceEndpoint | awk '{ print $2; }')
-      - mocha
+      - HELLO_API_ENDPOINT="$(serverless info --stage ${TARGET_STAGE} -v | grep ServiceEndpoint | awk '{ print $2; }')" mocha
