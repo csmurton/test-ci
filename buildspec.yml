@@ -1,14 +1,14 @@
 version: 0.2
 phases:
-  pre_build:
+  install:
     commands:
-      - echo Installing dependencies and running unit tests
-      - make test
+      - npm install
+      - npm install -g mocha
+      - npm install -g serverless@1.23.0
   build:
     commands:
-      - echo Building CloudFormation template package
-      - make build
-
-artifacts:
-  files:
-    - deploy/template.yaml
+      - serverless deploy --stage ${TARGET_STAGE}
+  post_build:
+    commands:
+      - export HELLO_ENDPOINT=$(serverless info --stage ${TARGET_STAGE} -v | grep ServiceEndpoint | awk '{ print $2; }')
+      - mocha

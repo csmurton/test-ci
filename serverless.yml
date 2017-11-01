@@ -1,0 +1,19 @@
+service: helloworld
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+  runtime: nodejs6.10
+
+package:
+  exclude:
+    - node_modules/**
+    - '!node_modules/node-fetch/**'
+
+functions:
+  sayHello:
+    handler: sayHello/index.handler
+    description: Says 'Hello World'
+    events:
+      - http: get hello
