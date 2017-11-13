@@ -11,3 +11,4 @@ phases:
   post_build:
     commands:
       - HELLO_API_ENDPOINT="$(serverless info --stage ${TARGET_STAGE} -v | grep ServiceEndpoint | awk '{ print $2; }')" mocha
+      - serverless remove --stage ${TARGET_STAGE}
