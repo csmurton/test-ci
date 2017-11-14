@@ -2,7 +2,7 @@ service: helloworld
 
 provider:
   name: aws
-  stage: ${opt:stage, 'dev'}
+  stage: ${opt:stage}
   region: us-west-2
   runtime: nodejs6.10
 
@@ -17,3 +17,6 @@ functions:
     description: Says 'Hello World'
     events:
       - http: get hello
+
+resources:
+  Description: Hello World Serverless application
